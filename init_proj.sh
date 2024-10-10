@@ -9,3 +9,5 @@ mv templates/CMakeLists.txt.src src/CMakeLists.txt
 
 mv scripts/index.sh .
 chmod +x index.sh
+
+rm -rf templates scripts .git
