@@ -3,10 +3,12 @@
 # Путь к директории с исходными файлами
 SRC_DIR="./src"
 
+cd $"SRC_DIR"
 # Перебираем каждую поддиректорию в директории SRC_DIR
-find "$SRC_DIR" -type d | while read -r dir; do
+find . -type d | while read -r dir; do
     # Проверяем, есть ли в директории хотя бы один .cpp или .h файл
     if ls "$dir"/*.cpp "$dir"/*.h >/dev/null 2>&1; then
+        cd "$dir"
         # Создаём (или перезаписываем) CMakeLists.txt в текущей директории
         CMAKE_FILE="$dir/CMakeLists.txt"
         echo "" > "$CMAKE_FILE"
@@ -35,5 +37,6 @@ EOL
 
         # Сообщение о создании CMakeLists.txt
         echo "CMakeLists.txt создан в директории $dir"
+        cd ..
     fi
 done
