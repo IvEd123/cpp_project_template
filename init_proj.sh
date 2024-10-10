@@ -7,9 +7,9 @@ mkdir src
 touch src/main.cpp
 mv templates/CMakeLists.txt.src src/CMakeLists.txt
 
-mv scripts/index.sh .
-chmod +x index.sh
+chmod +x scripts/*.sh
+mv scripts/*.sh .
 
-rm -rf templates scripts
+rm -rf templates scripts 
 rm -rf .git 
 rm .gitignore init_proj.sh

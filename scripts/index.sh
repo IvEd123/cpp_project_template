@@ -10,12 +10,12 @@ find . -type d | while read -r dir; do
     if ls "$dir"/*.cpp "$dir"/*.h >/dev/null 2>&1; then
         cd "$dir"
         # Создаём (или перезаписываем) CMakeLists.txt в текущей директории
-        CMAKE_FILE="$dir/CMakeLists.txt"
+        CMAKE_FILE="CMakeLists.txt"
         echo "" > "$CMAKE_FILE"
         
         # Записываем файлы .cpp в секцию SOURCES
         echo "set(SOURCES" >> "$CMAKE_FILE"
-        find "$dir" -maxdepth 1 -type f -name "*.cpp" | while read -r file; do
+        find . -maxdepth 1 -type f -name "*.cpp" | while read -r file; do
             echo "    $file" >> "$CMAKE_FILE"
         done
         echo ")" >> "$CMAKE_FILE"
@@ -23,7 +23,7 @@ find . -type d | while read -r dir; do
         
         # Записываем файлы .h в секцию HEADERS
         echo "set(HEADERS" >> "$CMAKE_FILE"
-        find "$dir" -maxdepth 1 -type f -name "*.h" | while read -r file; do
+        find . -maxdepth 1 -type f -name "*.h" | while read -r file; do
             echo "    $file" >> "$CMAKE_FILE"
         done
         echo ")" >> "$CMAKE_FILE"
